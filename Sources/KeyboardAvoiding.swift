@@ -243,6 +243,13 @@ import UIKit
         self.isKeyboardVisible = CGRect(x: CGFloat(0), y: CGFloat(0), width: CGFloat(screenSize.width), height: CGFloat(screenSize.height)).intersects(keyboardFrame)
     }
     
+    public class func reload() {
+        if self.isKeyboardVisible && avoidingView != nil && self.lastNotification != nil {
+            // perform avoiding immediately
+            self.didChange(self.lastNotification!)
+        }
+    }
+    
     // The triggerView is required if the avoidingView isn't nil
     @objc public class func setAvoidingView(_ avoidingView: UIView?, withTriggerView triggerView: UIView) {
         self.setAvoidingView(avoidingView, withOptionalTriggerView: triggerView)
